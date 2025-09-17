@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Eye, EyeOff } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import Logo from "@/assets/logo.png";
-import Whatsapp from "@/assets/whatsapp.jpg";
+import Whatsapp from "@/assets/whatsapp.png";
 import Flag from "@/assets/uae.svg";
 // import { uploadData } from "@/firebase/FirebaseUtils"; // 🔥 keep for later
 
@@ -41,9 +41,8 @@ export default function Login() {
           <img src={Logo} alt="Logo" className="w-10 h-10" />
           <span className="text-2xl font-bold">NaqaD</span>
         </div>
-        <button className="absolute right-0">
-          <img src={Whatsapp} alt="Whatsapp" className="w-8 h-8 rounded-full" />
-        </button>
+        <img src={Whatsapp} alt="Whatsapp" className="w-8 h-8 rounded-full absolute right-0" />
+
       </div>
 
       {/* Main content */}
