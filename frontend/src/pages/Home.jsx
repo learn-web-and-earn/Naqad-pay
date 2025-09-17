@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { useNavigate } from "react-router-dom";
+import Logo from "@/assets/logo.png";
 
 const Home = () => {
   const [checkingUser, setCheckingUser] = useState(true); // 🚀 loading state
@@ -28,8 +29,7 @@ const Home = () => {
   if (checkingUser) {
     return (
       <div className="min-h-screen flex flex-col items-center justify-center bg-white">
-        <div className="animate-spin rounded-full h-12 w-12 border-4 border-blue-900 border-t-transparent"></div>
-        <p className="mt-4 text-gray-600 font-medium">Verifying user...</p>
+        <img src={Logo} alt="" />
       </div>
     );
   }
