@@ -37,8 +37,18 @@ const OTP = () => {
     */
 
     setTimeout(() => {
+      // ✅ Save user to localStorage
+      localStorage.setItem(
+        "user",
+        JSON.stringify({
+          phone: "+971xxxxxxxxx", // you can replace with actual phone from login
+          verified: true,
+          verifiedAt: new Date().toISOString(),
+        })
+      );
+
       setLoading(false);
-      navigate("/"); // ✅ redirect to home
+      navigate("/"); // redirect to home
     }, 2000);
   };
 

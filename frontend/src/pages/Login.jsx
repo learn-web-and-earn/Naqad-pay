@@ -34,7 +34,7 @@ export default function Login() {
   };
 
   return (
-    <div className="min-h-screen bg-white flex flex-col justify-between px-6 pt-10 pb-6 relative">
+    <div className="min-h-screen bg-white flex flex-col justify-between px-6 pt-10 pb-6">
       {/* Header */}
       <div className="w-full flex items-center justify-center relative">
         <div className="flex items-center gap-2">
@@ -60,7 +60,7 @@ export default function Login() {
             <Input
               value={phone}
               onChange={(e) => setPhone(e.target.value)}
-              className="border-0 focus:ring-0 flex-1 p-0"
+              className="border-0 focus:outline-none focus:ring-0 flex-1 p-0"
             />
           </div>
         </div>
@@ -74,7 +74,7 @@ export default function Login() {
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               placeholder="Enter your Password"
-              className="pr-10"
+              className="pr-10 focus:outline-none focus:ring-0"
             />
             <button
               type="button"
@@ -87,7 +87,7 @@ export default function Login() {
         </div>
       </div>
 
-      {/* Bottom section */}
+      {/* Bottom button (fixed position without scroll) */}
       <div className="w-full mt-6">
         <Button
           onClick={handleLogin}
