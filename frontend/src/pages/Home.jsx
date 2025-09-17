@@ -36,7 +36,7 @@ const Home = () => {
 
   // 🔹 Main content after verification
   return (
-    <div className="min-h-screen flex flex-col items-center justify-center px-6 text-center bg-white">
+    <div className="min-h-[90vh] flex flex-col items-center justify-center px-6 text-center bg-white">
       <h1 className="text-lg font-medium text-gray-800 mb-4">
         Dear user, we have received your request. Our team will verify your
         details and update your account. Please wait for 24 hours. Thanks.

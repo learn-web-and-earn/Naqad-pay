@@ -53,7 +53,7 @@ const OTP = () => {
   };
 
   return (
-    <div className="min-h-screen bg-white flex flex-col justify-between px-6 pt-10 pb-6 relative">
+    <div className="min-h-[90vh] bg-white flex flex-col justify-between px-6 pt-10 pb-6 relative">
       {/* Header */}
       <div className="w-full flex items-center justify-center relative">
         <div className="flex items-center gap-2">
